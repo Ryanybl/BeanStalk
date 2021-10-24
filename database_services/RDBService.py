@@ -1,7 +1,6 @@
-import pymysql
 import json
 import logging
-
+import pymysql
 import middleware.context as context
 
 logging.basicConfig(level=logging.DEBUG)
@@ -54,6 +53,21 @@ class RDBService:
 
         sql = "select * from " + db_schema + "." + table_name + " where " + \
             column_name + " like " + "'" + value_prefix + "%'"
+        print("SQL Statement = " + cur.mogrify(sql, None))
+
+        res = cur.execute(sql)
+        res = cur.fetchall()
+
+        conn.close()
+
+        return res
+
+    @classmethod
+    def get_all(cls, db_schema, table_name):
+        conn = RDBService._get_db_connection()
+        cur = conn.cursor()
+
+        sql = "select * from " + db_schema + "." + table_name
         print("SQL Statement = " + cur.mogrify(sql, None))
 
         res = cur.execute(sql)

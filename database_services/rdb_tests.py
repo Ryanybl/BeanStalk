@@ -3,9 +3,7 @@ import database_services.RDBService as db_service
 
 def t1():
 
-    res = db_service.get_by_prefix(
-        "imdbfixed", "names_basic", "primary_name", "Tom H"
-    )
+    res = db_service.RDBService.get_all("products", "products")
     print("t1 resule = ", res)
 
 
@@ -30,7 +28,4 @@ def t3():
             })
     print("t3: res = ", res)
 
-#t2()
-t3()
-
-
+t1()
