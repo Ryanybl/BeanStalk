@@ -1,7 +1,7 @@
 import json
 import logging
 import pymysql
-import middleware.context as context
+import context
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger()
@@ -24,8 +24,7 @@ class RDBService:
         db_info = context.get_db_info()
 
         db_connection = pymysql.connect(
-           **db_info,
-            autocommit=True
+           **db_info
         )
         return db_connection
 
